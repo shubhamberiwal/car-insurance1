@@ -1,0 +1,51 @@
+
+<%- include('partials/header'); %>
+
+<div class="ui main text container segment" style="margin-top: 6em;">
+    <div class="ui huge header">Enter Car Details</div>
+    <form class="ui form" action="/cars" method="POST">
+        
+        <div class="field">
+            <label>CarID</label>
+            <input type="number" name="cid" placeholder="eg: 3498" id="">
+        </div>
+
+        <div class="field">
+            <label for="">Model Name</label>
+            <input type="text" name="model" placeholder="eg: Tesla Cybertruck" id="">
+        </div>
+        <div class="field">
+            <label for="">Year</label>
+            <input type="text" name="year" placeholder="eg: 2015" id="">
+        </div>
+        <div class="field">
+            <label for="">Color</label>
+            <input type="text" name="color" placeholder="eg: Blue" id="">
+        </div>
+        <div class="field">
+            <label for="">Price</label>
+            <input type="text" name="price" placeholder="eg: 5000000" id="">
+        </div>
+        <div class="field">
+            <label for="">Owner Id</label>
+            <input type="text" name="oid" placeholder="eg: 101" id="">
+        </div>
+        <div class="field">
+            <label for="">Policy Id</label>
+            <input type="text" name="pid" placeholder="choose from: 15/30/45/60" id="">
+        </div>
+
+
+        <!-- <div class="field">
+            <label for="">Blog Content</label>
+            <textarea name="blog[body]" id="" cols="30" rows="10"></textarea>
+        </div> -->
+
+
+        <button class="ui inverted secondary button" type="submit">Add Car to Database</button>
+    </form>
+</div>
+
+
+</body>
+</html>

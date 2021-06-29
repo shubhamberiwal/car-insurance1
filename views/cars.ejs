@@ -1,0 +1,59 @@
+<%- include('partials/header'); %>
+
+    <main id="site-main">
+        <div class="container">
+            <div class="unii1 ">
+                <span class="unii2">Insurance Policies</span>
+            </div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Owner ID</th>
+                        <th>Car ID</th>
+                        <th>Model Name</th>
+                        <th>Year</th>
+                        <th>Color</th>
+                        <th>Price</th>
+                        <th>Policy ID</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    <% rows.forEach( (row)=> { %>
+                        <tr>
+                            <td>
+                                <%= row.ownerid %>
+                            </td>
+                            <td>
+                                <%= row.carid %>
+                            </td>
+                            <td>
+                                <%= row.model %>
+                            </td>
+                            <td>
+                                <%= row.year %>
+                            </td>
+                            <td>
+                                <%= row.color %>
+                            </td>
+                            <td>
+                                <%= row.price %>
+                            </td>
+                            <td>
+                                <%= row.policy_id %>
+                            </td>
+                            <td>upd</td>
+                        </tr>
+                        <% }); %>
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+
+    </body>
+
+    </html>

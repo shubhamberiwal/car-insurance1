@@ -1,0 +1,43 @@
+
+<%- include('partials/header'); %>
+
+
+<div class="ui main text container segment" style="margin-top: 6em;">
+    <div class="ui huge header">Enter New Owner Details</div>
+    <form class="ui form" action="/owner" method="POST">
+        
+        <div class="field">
+            <label>OwnerID</label>
+            <input type="number" name="id" placeholder="eg: 100" id="">
+        </div>
+
+        <div class="field">
+            <label for="">Name</label>
+            <input type="text" name="name" placeholder="eg: Lionel Messi" id="">
+        </div>
+        <div class="field">
+            <label for="">Phone</label>
+            <input type="text" name="phno" placeholder="Enter a 10 digit phone number" id="">
+        </div>
+        <div class="field">
+            <label for="">Location</label>
+            <input type="text" name="location" placeholder="eg: Ghatkobar" id="">
+        </div>
+        <div class="field">
+            <label for="">Pin</label>
+            <input type="text" name="pin" placeholder="Enter a 6 digit pin" id="">
+        </div>
+
+
+        <!-- <div class="field">
+            <label for="">Blog Content</label>
+            <textarea name="blog[body]" id="" cols="30" rows="10"></textarea>
+        </div> -->
+
+
+        <button class="ui inverted secondary button" type="submit">Add Owner to Database</button>
+    </form>
+</div>
+
+</body>
+</html>

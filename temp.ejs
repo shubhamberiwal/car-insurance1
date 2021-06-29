@@ -1,0 +1,43 @@
+
+
+
+<main id="site-main">
+    
+    
+    <div class="container">
+        <div class="unii1 ">
+                <span class="unii2">Insurance Policies</span>
+        </div>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <% fields.forEach( (field) => { %>
+                        <th><%= field.name %></th>
+                    <% }); %>
+                    <th>Action</th>        
+                  </tr>  
+                </thead>
+        <tbody>
+
+            <% rows.forEach( (row) => {  %>
+                <tr>
+                    <td><%= row[Policy ID] %></td>
+                    <td><%= row.`policy_id` %></td>
+                    <td><%= row.`policy_type` %></td>
+                    <td><%= row.`Type of Policy` %></td>
+                    <td>
+                        <a href="#" class="btn border-shadow update">
+                            <span class="text-gradient"><i>Act</i></span>
+                        </a>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+            </table>
+    
+    </div>
+</main>
+
+
+</body>
+</html>

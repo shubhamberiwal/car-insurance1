@@ -1,0 +1,67 @@
+
+
+<%- include('partials/header'); %>
+    
+
+
+    <!-- <header id="header">
+        <nav>
+            <div class="container">
+                <div class="text-center">
+                    <a href="/" class="nav-brand text-dark">Carlife</a>
+                </div>
+            </div>
+        </nav>
+    </header> -->
+
+
+    <main id="site-main">
+        <div class="container">
+            
+            
+            <div class="unii1 ">
+                    <span class="unii2">Owner Details</span>
+            </div>
+            
+            <!-- <div class="box-nav d-flex justify-between">
+                <a href="/" class="border-shadow">
+                    <span class="text-gradient"></span>
+                    <span class="">Owner</span>
+                </a>
+            </div> -->
+
+            <!-- form handling -->
+            <!-- <form action="/" method="get"> -->
+                <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <% fields.forEach( (field) => { %>
+                            <th><%= field.name %></th>
+                        <% }); %>
+                        <th>Action</th>        
+                      </tr>  
+                    </thead>
+            <tbody>
+                <% rows.forEach( (row) => {  %>
+                    <tr>
+                        <td><%= row.OwnerId %></td>
+                        <td><%= row.Name %></td>
+                        <td><%= row.Phone %></td>
+                        <td><%= row.Location %></td>
+                        <td><%= row.Pin %></td>
+                        <td>
+                            <a href="#" class="btn border-shadow update">
+                                <span class="text-gradient"><i>Act</i></span>
+                            </a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+                </table>
+            <!-- </form> -->
+        </div>
+    </main>
+
+
+</body>
+</html>

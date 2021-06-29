@@ -1,0 +1,173 @@
+
+
+
+
+:root{
+    --dark: #2b2d42;
+    --light: #adb5bd;
+    --border: #dee2e6;
+    --border-btn: #edf2f4;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    font-family: 'Barlow', sans-serif;
+}
+
+.container{
+    max-width: 1024px;
+    margin: auto;
+}
+
+
+
+/*us 1st nav*/
+.nav-brand{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+/*us 1st nav*/
+.text-center{
+    text-align: center;
+}
+/*us 1st nav*/
+.text-dark{
+    color: var(--dark);
+}
+/*us 1st nav*/
+#header nav{
+    background-color: #06d6a0;
+    padding: 1em 0;
+    width: 100%;
+}
+
+
+/*us 2nd nav*/
+.d-flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+/*us 2nd nav*/
+.justify-between{
+    justify-content: space-between;
+}
+/*us 2nd nav*/
+.border-shadow{
+    border: 1px solid var(--vorder-btn);
+    box-shadow: 1px 3px 10px #e9ecef;
+}
+/*us 2nd nav*/
+#site-main .container.box-nav>a{
+    font-size:1em;
+    padding: 0.5em 1em;
+}
+/*not clear*/
+.inline{
+    display: inline-block;
+}
+/*not clear*/
+.text-light{
+    color : var(--light);
+}
+
+
+/*real 2nd nav */
+.unii1 {
+    text-align: center;
+}
+.unii2{
+    border: 1px solid var(--vorder-btn);
+    box-shadow: 1px 3px 10px #e9ecef;
+    /* box-shadow: 1px 4px 10px rgb(180, 174, 174); */
+    font-size: 3em;
+}
+
+
+
+
+/*action update delete wala*/
+.text-gradient{
+    background: linear-gradient(to right, #Be2de2, #4a00e0)
+    /* -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fillcolor: transparent; */
+}
+
+
+
+
+#site-main{
+    margin-top: 6em;
+    font-family: 'Barlow', sans-serif;
+}
+
+
+#site-main .container form{
+    margin: 2em 0;
+}
+table{
+    border-spacing: 0px;
+    width: 100%;
+}
+.table{
+    margin-top: 3em;
+}
+
+.table td, .table th{
+    padding: .75em;
+    vertical-align: top;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+/*action update and delete wala */
+.table td>a.btn{
+    padding: .3em 1em;
+    font-size: 1.1em;
+    margin: 0.2em;
+}
+/* .table tr:hover{
+    background-color: #06d6a0;
+    background-color: #58ecff;
+}
+
+.table tr:hover td>a{
+    box-shadow:none;
+} */
+.table .thead-dark tr th{
+    color: #fff;
+    background-color: var(--dark);
+    border-color: #32383e;
+}
+
+
+/* bs code */
+/* @media only screen and (max-width: 1024px){
+
+    table, thead, tbody, th, td, tr{
+        display: block;
+    }
+
+    thead tr{
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr{ border: 1px solid var(--border);}
+
+    td{
+        border: none;
+        border-bottom: relative;
+    }
+
+} */
+
+
+
