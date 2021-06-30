@@ -1,0 +1,38 @@
+
+
+
+<%- include('partials/header'); %>
+
+
+<div class="ui main text container segment" style="margin-top: 6em;">
+    <div class="ui huge header">Edit Owner : <%= rows[0].ownerid %></div>
+    <form class="ui form" action="/owner/<%= rows[0].ownerid %>" method="POST">
+        
+        <div class="field">
+            <label>OwnerID</label>
+            <input type="number" name="id" value="<%= rows[0].ownerid %>" placeholder="eg: 100" id="">
+        </div>
+
+        <div class="field">
+            <label for="">Name</label>
+            <input type="text" name="name" value="<%= rows[0].owner_name %>" placeholder="eg: Lionel Messi" id="">
+        </div>
+        <div class="field">
+            <label for="">Phone</label>
+            <input type="text" name="phno" value="<%= rows[0].ph_no %>" placeholder="Enter a 10 digit phone number" id="">
+        </div>
+        <div class="field">
+            <label for="">Location</label>
+            <input type="text" name="location" value="<%= rows[0].location %>" placeholder="eg: Ghatkobar" id="">
+        </div>
+        <div class="field">
+            <label for="">Pin</label>
+            <input type="text" name="pin" value="<%= rows[0].pin %>" placeholder="Enter a 6 digit pin" id="">
+        </div>
+
+        <button class="ui inverted secondary button" type="submit">Update Owner's Info</button>
+    </form>
+</div>
+
+</body>
+</html>

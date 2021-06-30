@@ -1,0 +1,45 @@
+
+<%- include('partials/header'); %>
+
+<div class="ui main text container segment" style="margin-top: 6em;">
+    <div class="ui huge header">Edit Car Details of id: <%= rows[0].carid %></div>
+    <form class="ui form" action="/cars/<%= rows[0].carid %>" method="POST">
+        
+        <div class="field">
+            <label>CarID</label>
+            <input type="number" name="cid" value="<%= rows[0].carid %>" placeholder="eg: 3498" id="">
+        </div>
+
+        <div class="field">
+            <label for="">Model Name</label>
+            <input type="text" name="model" value="<%= rows[0].model %>" placeholder="eg: Tesla Cybertruck" id="">
+        </div>
+        <div class="field">
+            <label for="">Year</label>
+            <input type="text" name="year" value="<%= rows[0].year %>" placeholder="eg: 2015" id="">
+        </div>
+        <div class="field">
+            <label for="">Color</label>
+            <input type="text" name="color" value="<%= rows[0].color %>" placeholder="eg: Blue" id="">
+        </div>
+        <div class="field">
+            <label for="">Price</label>
+            <input type="text" name="price" value="<%= rows[0].price %>" placeholder="eg: 5000000" id="">
+        </div>
+        <div class="field">
+            <label for="">Owner Id</label>
+            <input type="text" name="oid" value="<%= rows[0].ownerid %>" placeholder="eg: 101" id="">
+        </div>
+        <div class="field">
+            <label for="">Policy Id</label>
+            <input type="text" name="pid" value="<%= rows[0].policy_id %>" placeholder="choose from: 15/30/45/60" id="">
+        </div>
+
+
+        <button class="ui inverted secondary button" type="submit">Update Car to Database</button>
+    </form>
+</div>
+
+
+</body>
+</html>

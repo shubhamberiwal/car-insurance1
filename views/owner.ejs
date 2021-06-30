@@ -50,9 +50,17 @@
                         <td><%= row.Location %></td>
                         <td><%= row.Pin %></td>
                         <td>
-                            <a href="#" class="btn border-shadow update">
-                                <span class="text-gradient"><i>Act</i></span>
+                            <a href="/owner/<%= row.OwnerId %>/edit" class = "mini ui inverted violet button">
+                                <span><i>Edit</i></span>
                             </a>
+                            <form id="deletebutton" action="" method="POST">
+                                <button class="mini ui inverted red button">Delete</button>
+                            </form>
+                            
+                            
+                            <!-- <a href="#" class="btn border-shadow update">
+                                <span class="text-gradient"><i>Act</i></span>
+                            </a> -->
                         </td>
                     </tr>
                 <% }); %>
