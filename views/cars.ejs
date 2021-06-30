@@ -8,13 +8,13 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Owner ID</th>
+                        <th><a href="/owner">Owner ID</a></th>
                         <th>Car ID</th>
                         <th>Model Name</th>
                         <th>Year</th>
                         <th>Color</th>
                         <th>Price</th>
-                        <th>Policy ID</th>
+                        <th><a href="/policies">Policy ID</a></th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -45,10 +45,10 @@
                                 <%= row.policy_id %>
                             </td>
                             <td>
-                                <a href="/cars/<%= row.carid %>/edit" class = "mini ui inverted violet button">
+                                <a href="/cars/<%= row.carid %>/edit" class = "mini ui inverted brown button">
                                     <span><i>Edit</i></span>
                                 </a>
-                                <form id="deletebutton" action="" method="POST">
+                                <form id="deletebutton" action="/cars/<%= row.carid %>/delete" method="POST">
                                     <button class="mini ui inverted red button">Delete</button>
                                 </form>
                             </td>

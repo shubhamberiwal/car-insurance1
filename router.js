@@ -6,19 +6,12 @@ const connection = require("./connection");
 
 
 router.get('/', (req, res, next) => {
-    // console.log("Router Working");
     res.redirect("/owner");
-    // res.send("Landing Page Here.");
-    res.end();
 });
 
 
 
-
-
-
-
-
+// owner routing begins
 //owner table display
 router.get('/owner', (req, res, next) => {
     connection.query("Select ownerid as OwnerId, owner_name as Name, ph_no as Phone, location as Location, pin as Pin from owner",(err,rows,fields) => {
@@ -27,7 +20,10 @@ router.get('/owner', (req, res, next) => {
             res.render('owner',{rows : rows, fields: fields});
         }
         else
-            console.log(err);
+        {
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql); 
+            res.send(err);
+        }
     });
 });
 // add new owner form
@@ -36,7 +32,6 @@ router.get('/owner/new', (req, res) => {
 });
 // add new owner to the database
 router.post('/owner', (req,res)=>{
-    // const obj = JSON.parse(JSON.stringify(req.body));
     req.body = JSON.parse(JSON.stringify(req.body));
 
     let id = req.body.id;
@@ -53,7 +48,7 @@ router.post('/owner', (req,res)=>{
         else
         {
             res.send(err);
-            // console.log(err.sqlMessage);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql); 
         }
         });
 });
@@ -72,7 +67,7 @@ router.get("/owner/:id/edit", (req,res) => {
         else
         {
             res.send(err);
-            // console.log(err.sqlMessage);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql); 
         }
         });
 });
@@ -89,7 +84,7 @@ router.post("/owner/:uid", (req,res) => {
     let pin = req.body.pin;
 
     let sql = `UPDATE owner SET ownerid = '${id}', owner_name = '${name}', ph_no = '${phno}', location = '${location}', pin = '${pin}' WHERE (ownerid = '${previd}')`;
-    console.log(sql);
+    // console.log(sql);
     connection.query( sql ,(err,rows,fields) => {
         if(!err)
         {
@@ -98,17 +93,33 @@ router.post("/owner/:uid", (req,res) => {
         else
         {
             res.send(err);
-            // console.log(err.sqlMessage);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql); 
         }
         });
+});
+
+// Delete Owner route
+router.post( '/owner/:id/delete', (req,res) => {
+    let id = req.params.id;
+    let sql = `Delete from owner where ownerid=${id}`;
+    // console.log(sql);
+    connection.query(sql, (err, rows, fields)=>{
+        if(!err)
+        {
+            res.redirect('/owner');
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql); 
+        }
+    });
 });
 
 
 
 
 
-
-// Select policy_id as `Policy Id`, policy_type as `Type of Policy` from insurance_policy
 // different insurance policies
 router.get('/policies', (req,res,next) => {
     connection.query("Select * from `insurance_policy`", (err,rows,fields) => {
@@ -167,8 +178,8 @@ router.post('/cars', (req, res) => {
         }
         else
         {
-            res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECTyy QUERY WAS: " + err.sql);
-            // console.log(err);
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
         }
         });
 });
@@ -184,7 +195,8 @@ router.get('/cars/:id/edit', (req, res) => {
         }
         else
         {
-            res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECTzz QUERY WAS: " + err.sql);
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
         }
         });
 });
@@ -202,7 +214,7 @@ router.post('/cars/:id', (req, res) => {
     let pid = req.body.pid;
     let sql =  `UPDATE car SET carid = '${cid}' , model ='${model}' , year ='${year}' , color ='${color}' , price ='${price}' , ownerid ='${oid}' , policy_id ='${pid}'  WHERE (carid = '${carid}')`;
 
-    console.log(sql);
+    // console.log(sql);
     connection.query(sql, (err,rows,fields) => {
         if(!err)
         {
@@ -210,31 +222,27 @@ router.post('/cars/:id', (req, res) => {
         }
         else
         {
-            res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECTxx QUERY WAS: " + err.sql);
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
         }
     });
 });
 
-
-
-
-
-
-
-
-// router.get('/owner1', (req, res, next) => {
-//     connection.query("Select * from owner",(err,rows,fields) => {
-//         if(!err)
-//         {
-//             res.render('owner1',{rows : rows, fields: fields});
-//             // res.send("j");
-//         }
-//         else
-//             console.log(err);
-//     })
-// });
-
-
+// Delete post for car details
+router.post( "/cars/:id/delete", (req,res) => {
+    let sql = `Delete from car where carid = ${req.params.id}`;
+    connection.query( sql, (err, rows, fields) => {
+        if(!err)
+        {
+            res.redirect("/cars");
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+    })
+});
 
 
 
