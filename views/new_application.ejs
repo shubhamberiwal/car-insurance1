@@ -1,0 +1,31 @@
+
+<%- include('partials/header'); %>
+
+<div class="ui main text container segment" style="margin-top: 6em;">
+    <div class="ui huge header">Fill Claim Application Form</div>
+    <form class="ui form" action="/application" method="POST">
+        
+        <div class="field">
+            <label>Application ID</label>
+            <input type="number" name="aid" placeholder="eg: 1234" id="">
+        </div>
+        <div class="field">
+            <label for="">Cause </label>
+            <input type="text" name="cause" placeholder="eg: Theft/Fire/Natural Disasters" id="">
+        </div>
+        <div class="field">
+            <label for="">Application Amount</label>
+            <input type="number" name="amount" placeholder="eg: 2000" id="">
+        </div>
+        <div class="field">
+            <label for="">Car ID</label>
+            <input type="number" name="cid" placeholder="Must be a car id from car details database eg: 8055" id="">
+        </div>
+
+        <button class="ui inverted secondary button" type="submit">Add Claim Application to Database</button>
+    </form>
+</div>
+
+
+</body>
+</html>

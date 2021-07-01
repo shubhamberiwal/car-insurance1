@@ -1,0 +1,64 @@
+
+
+
+<%- include('partials/header'); %>
+
+<main id="site-main">
+    <div class="container">
+        <div class="unii1 ">
+            <span class="unii2">Owner Claims Application</span>
+        </div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th><a href="/owner">Owner ID</a></th>
+                    <th>Application ID</th>
+                    <th>Reason For Claim</th>
+                    <th>Amount Claimed</th>
+                    <th><a href="/cars">Car ID</a></th>
+                    <th><a href="/policies">Policy ID</a></th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% rows.forEach( (row)=> { %>
+                    <tr>
+                        <td>
+                            <%= row.ownerid %>
+                        </td>
+                        <td>
+                            <%= row.app_id %>
+                        </td>
+                        <td>
+                            <%= row.cause %>
+                        </td>
+                        <td>
+                            <%= row.app_amount %>
+                        </td>
+                        <td>
+                            <%= row.carid %>
+                        </td>
+                        <td>
+                            <%= row.policy_id %>
+                        </td>
+                        <td>
+                            <a href="/application/<%= row.app_id %>/edit" class = "mini ui inverted brown button">
+                                <span><i>Edit</i></span>
+                            </a>
+                            <form id="deletebutton" action="/application/<%= row.app_id %>/delete" method="POST">
+                                <button class="mini ui inverted red button">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
+
+            </tbody>
+        </table>
+    </div>
+</main>
+
+
+</body>
+
+</html>

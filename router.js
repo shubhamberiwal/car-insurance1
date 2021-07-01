@@ -149,8 +149,11 @@ router.get('/cars', (req, res, next) => {
             res.render('cars', {rows: rows});
         }
         else
-            console.log(err);
-    })
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+    });
 });
 
 // render add new car form, create route
@@ -241,9 +244,111 @@ router.post( "/cars/:id/delete", (req,res) => {
             res.send(err);
             // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
         }
-    })
+    });
 });
 
+
+
+
+// Owner application route
+router.get('/application', (req,res) => {
+    connection.query ( "select * from application join car using(carid)", (err,rows,fields) => {
+        if(!err)
+        {
+            // console.log(rows);
+            // res.send(rows);
+            res.render('application', {rows:rows});
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+    });
+});
+
+// rendering new application form, create route
+router.get("/application/new", (req,res) => {
+    res.render("new_application");
+});
+
+//add new application form details to database
+router.post("/application", (req,res) =>{
+    req.body = JSON.parse(JSON.stringify(req.body));
+    let aid = req.body.aid;
+    let cause = req.body.cause;
+    let amount = req.body.amount;
+    let cid = req.body.cid;
+    let sql = `Insert into application values (${aid},'${cause}',${amount},${cid});`;
+    // console.log(sql);
+    connection.query(sql, (err,rows,fields) => {
+        if(!err)
+        {
+            res.redirect("/application");
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+    });
+});
+
+
+// rendering edit application form
+router.get('/application/:id/edit', (req, res) => {
+    let aid = req.params.id;
+    connection.query ("select * from application where app_id ="+aid, (err,rows,fields) => {
+        if(!err)
+        {
+            rows = JSON.parse(JSON.stringify(rows));
+            res.render('edit_application',{rows : rows});
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+        });
+});
+
+// updating application details
+router.post('/application/:id', (req, res) => {
+    let id = req.params.id
+    req.body = JSON.parse(JSON.stringify(req.body));
+    let aid = req.body.aid;
+    let cause = req.body.cause;
+    let amount = req.body.amount;
+    let cid = req.body.cid;
+    let sql = `Update application set app_id = ${aid} , cause = '${cause}', app_amount = ${amount}, carid = ${cid} WHERE (app_id = ${id});`;
+    connection.query(sql, (err,rows,fields) => {
+        if(!err)
+        {
+            res.redirect('/application');
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+    });
+});
+
+// Delete post for application form
+router.post( "/application/:id/delete", (req,res) => {
+    let sql = `Delete from application where app_id = ${req.params.id}`;
+    connection.query( sql, (err, rows, fields) => {
+        if(!err)
+        {
+            res.redirect("/application");
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+    })
+});
 
 
 module.exports = router;
