@@ -50,9 +50,9 @@
                             <%= row.owner_name %>
                         </td>
                         <td>
-                            <!-- <a href="/application/<%= row.app_id %>/edit" class = "mini ui inverted brown button">
+                            <a href="/approval/<%= row.approval_id %>/edit" class = "mini ui inverted brown button">
                                 <span><i>Edit</i></span>
-                            </a> -->
+                            </a>
                             <form id="deletebutton" action="/approval/<%= row.approval_id %>/delete" method="POST">
                                 <button class="mini ui inverted red button">Delete</button>
                             </form> 

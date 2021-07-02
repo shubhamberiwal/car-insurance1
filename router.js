@@ -423,6 +423,47 @@ router.post('/approval', (req, res) => {
         });
 });
 
+// rendering edit approval form
+router.get('/approval/:id/edit', (req, res) => {
+    let cid = req.params.id;
+    connection.query ("select * from approval where approval_id ="+cid, (err,rows,fields) => {
+        if(!err)
+        {
+            rows = JSON.parse(JSON.stringify(rows));
+            res.render('edit_approval',{rows : rows});
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+        });
+});
+
+// updating approval details
+router.post('/approval/:id', (req, res) => {
+    req.body = JSON.parse(JSON.stringify(req.body));
+    let aid = req.body.aid;
+    let status = req.body.status;
+    let appid = req.body.appid;
+    let sql =  `UPDATE approval SET approval_id = '${aid}' , approval_status ='${status}' , app_id ='${appid}'  WHERE (approval_id = '${req.params.id}')`;
+
+    // console.log(sql);
+    connection.query(sql, (err,rows,fields) => {
+        if(!err)
+        {
+            res.redirect('/approval');
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+    });
+});
+
+
+
 // delete route for approval
 router.post('approval/:id/delete', (req,res) => {
     connection.query(`Delete from approval where approval_id = ${req.params.id}`, (err,rows, fields) => {
