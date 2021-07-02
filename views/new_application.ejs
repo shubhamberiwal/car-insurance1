@@ -19,7 +19,12 @@
         </div>
         <div class="field">
             <label for="">Car ID</label>
-            <input type="number" name="cid" placeholder="Must be a car id from car details database eg: 8055" id="">
+            <!-- <input type="number" name="cid" placeholder="Must be a car id from car details database eg: 8055" id=""> -->
+            <select id="" name="cid">
+                <% rows.forEach( (row)=> { %>
+                    <option value="<%= row.carid %>"> <%= row.carid %> </option>
+                <% }); %>
+                </select>
         </div>
 
         <button class="ui inverted secondary button" type="submit">Add Claim Application to Database</button>

@@ -2,7 +2,7 @@
 <%- include('partials/header'); %>
 
 <div class="ui main text container segment" style="margin-top: 6em;">
-    <div class="ui huge header">Enter Car Details</div>
+    <div class="ui huge header">Enter New Car Details</div>
     <form class="ui form" action="/cars" method="POST">
         
         <div class="field">
@@ -28,7 +28,12 @@
         </div>
         <div class="field">
             <label for="">Owner Id</label>
-            <input type="number" name="oid" placeholder="eg: 101" id="">
+            <!-- <input type="number" name="oid" placeholder="eg: 101" id=""> -->
+            <select id="" name="oid">
+                <% rows.forEach( (row)=> { %>
+                    <option value="<%= row.ownerid %>"> <%= row.ownerid %> </option>
+                <% }); %>
+            </select>
         </div>
         <div class="field">
             <label for="">Policy Id</label>

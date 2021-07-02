@@ -1,0 +1,71 @@
+
+
+
+<%- include('partials/header'); %>
+
+<main id="site-main">
+    <div class="container">
+        <div class="unii1 ">
+            <span class="unii2">Company's Approval History</span>
+        </div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Approval ID</th>
+                    <th>Status</th>
+                    <th><a href="/application">Application ID</a></th>
+                    <th>Amount</th>
+                    <th>Reason for Claim</th>
+                    <th><a href="/owner">Owner Name</a></th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% rows.forEach( (row)=> { %>
+                    <tr>
+                        <td>
+                            <%= row.approval_id %>
+                        </td>
+                        <td>
+                            
+                            <% if((row.approval_status).localeCompare("Approved")==0) { %>
+                                <span><i class="check circle outline icon" id="tick"></i></span>
+                            <%}else if((row.approval_status).localeCompare("Rejected")==0) { %>
+                                <span><i class="times circle outline icon" id="cross"></i></span>
+                            <% } else if((row.approval_status).localeCompare("Pending")==0) { %>
+                                <span><i class="hourglass outline icon" id="hourglass"></i></span>
+                            <% } %>
+                        </td>
+                        <td>
+                            <%= row.app_id %>
+                        </td>
+                        <td>
+                            <%= row.app_amount %>
+                        </td>
+                        <td>
+                            <%= row.cause %>
+                        </td>
+                        <td>
+                            <%= row.owner_name %>
+                        </td>
+                        <td>
+                            <!-- <a href="/application/<%= row.app_id %>/edit" class = "mini ui inverted brown button">
+                                <span><i>Edit</i></span>
+                            </a> -->
+                            <form id="deletebutton" action="/approval/<%= row.approval_id %>/delete" method="POST">
+                                <button class="mini ui inverted red button">Delete</button>
+                            </form> 
+                        </td>
+                    </tr>
+                    <% }); %>
+
+            </tbody>
+        </table>
+    </div>
+</main>
+
+
+</body>
+
+</html>

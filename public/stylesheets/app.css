@@ -17,7 +17,7 @@
 
 a{
     text-decoration: none;
-    font-family: 'Barlow', sans-serif;
+    /* font-family: 'Barlow', sans-serif; */
 }
 
 .container{
@@ -192,6 +192,21 @@ div.menu > div.container > div.item {
     color: #32383e !important;
     color: #fff !important;
     /* font-weight: bolder !important; */
+}
+
+/* .table > tbody> tr> td>  */
+#tick{
+    color: green;
+}
+#cross{
+    /* color: crimson; */
+    /* color: firebrick; */
+    /* color: orangered; */
+    color: tomato;
+    color: red;
+}
+#hourglass{
+    color: black;
 }
 
 /* bs code */

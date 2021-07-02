@@ -1,0 +1,37 @@
+
+<%- include('partials/header'); %>
+
+<div class="ui main text container segment" style="margin-top: 6em;">
+    <div class="ui huge header">Approval</div>
+    <form class="ui form" action="/approval" method="POST">
+        
+        <div class="field">
+            <label>Approval ID</label>
+            <input type="number" name="aid" placeholder="eg: 101001" id="">
+        </div>
+        <div class="field">
+            <label for="">Approval Status</label>
+            <!-- <input type="text" name="status" placeholder="eg: Approved/Rejected/Pending" id=""> -->
+            <select name="status" id="">
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Pending">Pending</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="">Application Id</label>
+            <!-- <input type="number" name="appid" placeholder="eg: 2000" id=""> -->
+            <select id="" name="appid">
+            <% rows.forEach( (row)=> { %>
+                <option value="<%= row.app_id %>"> <%= row.app_id %> </option>
+            <% }); %>
+            </select>
+        </div>
+
+        <button class="ui inverted secondary button" type="submit">Add to Database</button>
+    </form>
+</div>
+
+
+</body>
+</html>

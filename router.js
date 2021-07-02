@@ -6,7 +6,8 @@ const connection = require("./connection");
 
 
 router.get('/', (req, res, next) => {
-    res.redirect("/owner");
+    res.render("landing");
+    // res.redirect("/owner");
 });
 
 
@@ -158,7 +159,17 @@ router.get('/cars', (req, res, next) => {
 
 // render add new car form, create route
 router.get('/cars/new', (req, res) => {
-    res.render("new_cars");
+    connection.query("Select * from owner",(err,rows,fields) => {
+        if(!err)
+        {
+            res.render('new_cars', {rows: rows});
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+    });
 });
 
 // add new car details to database
@@ -249,7 +260,6 @@ router.post( "/cars/:id/delete", (req,res) => {
 
 
 
-
 // Owner application route
 router.get('/application', (req,res) => {
     connection.query ( "select * from application join car using(carid)", (err,rows,fields) => {
@@ -269,7 +279,17 @@ router.get('/application', (req,res) => {
 
 // rendering new application form, create route
 router.get("/application/new", (req,res) => {
-    res.render("new_application");
+    connection.query ( "select * from car", (err,rows,fields) => {
+        if(!err)
+        {
+            res.render('new_application', {rows:rows});
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+    });
 });
 
 //add new application form details to database
@@ -280,7 +300,6 @@ router.post("/application", (req,res) =>{
     let amount = req.body.amount;
     let cid = req.body.cid;
     let sql = `Insert into application values (${aid},'${cause}',${amount},${cid});`;
-    // console.log(sql);
     connection.query(sql, (err,rows,fields) => {
         if(!err)
         {
@@ -348,6 +367,75 @@ router.post( "/application/:id/delete", (req,res) => {
             // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
         }
     })
+});
+
+
+
+
+
+// approval entity routing
+// show approval history details
+router.get('/approval', (req, res, next) => {
+    connection.query("select * from approval join application using (app_id) join car using(carid) join owner using(ownerid);",(err,rows,fields) => {
+        if(!err)
+        {
+            res.render('approval', {rows: rows});
+        }
+        else
+        res.send(err);
+    });
+});
+
+// render add new approval form, create route
+router.get('/approval/new', (req, res) => {
+    connection.query("select * from application;", (err,rows,fields) => {
+        if(!err)
+        {
+            res.render("new_approval", {rows: rows});
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+    });
+});
+
+// add new approval details to database
+router.post('/approval', (req, res) => {
+    
+    req.body = JSON.parse(JSON.stringify(req.body));
+    let aid = req.body.aid;
+    let status = req.body.status;
+    let appid = req.body.appid;
+
+    let sql = `INSERT INTO approval VALUES ( '${aid}', '${status}', '${appid}');`;
+    connection.query( sql ,(err,rows,fields) => {
+        if(!err)
+        {
+            res.redirect('/approval');
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+        });
+});
+
+// delete route for approval
+router.post('approval/:id/delete', (req,res) => {
+    connection.query(`Delete from approval where approval_id = ${req.params.id}`, (err,rows, fields) => {
+        if(!err)
+        {
+            res.redirect('/approval');
+        }
+        else
+        {
+            res.send(err);
+            // res.send("ERROR MESSAGE IS " +err.sqlMessage + " . THE INCORRECT QUERY WAS: " + err.sql);
+        }
+    });
 });
 
 
